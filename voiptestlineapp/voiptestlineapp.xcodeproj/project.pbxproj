@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E106E9721E6D944000F19AA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E106E9711E6D944000F19AA3 /* CoreLocation.framework */; };
 		E15304361E6D54B50048A36A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E15304351E6D54B50048A36A /* main.m */; };
 		E15304391E6D54B50048A36A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E15304381E6D54B50048A36A /* AppDelegate.m */; };
 		E153043C1E6D54B50048A36A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E153043B1E6D54B50048A36A /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E106E9711E6D944000F19AA3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E15304311E6D54B50048A36A /* voiptestlineapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiptestlineapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15304351E6D54B50048A36A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E15304371E6D54B50048A36A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -36,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E106E9721E6D944000F19AA3 /* CoreLocation.framework in Frameworks */,
 				E153044D1E6D57C30048A36A /* PushKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +91,7 @@
 		E153044B1E6D57C20048A36A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E106E9711E6D944000F19AA3 /* CoreLocation.framework */,
 				E153044C1E6D57C30048A36A /* PushKit.framework */,
 			);
 			name = Frameworks;

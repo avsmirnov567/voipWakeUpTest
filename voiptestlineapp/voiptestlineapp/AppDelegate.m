@@ -7,9 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import <PushKit/PushKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<PKPushRegistryDelegate, CLLocationManagerDelegate>
+{
+    PKPushRegistry *_pushRegistry;
+    CLLocationManager *_locationManager;
+}
 @end
 
 @implementation AppDelegate
@@ -19,8 +25,69 @@
     
     NSLog(@"app launched with state %ld", (long)[application applicationState]);
     
+    UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [application registerUserNotificationSettings:settings];
+    
+    
+    _pushRegistry = [[PKPushRegistry alloc] initWithQueue:dispatch_get_main_queue()];
+    _pushRegistry.delegate = self;
+    _pushRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [_locationManager requestAlwaysAuthorization];
+    
     return YES;
 }
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [_locationManager stopUpdatingLocation];
+    CLLocation *location = [locations lastObject];
+    [self sendLocalNotificationsWithMessage:[NSString stringWithFormat:@"Location is: %f %f", location.coordinate.latitude, location.coordinate.longitude]];
+    NSLog(@"Location is: %f %f", location.coordinate.latitude, location.coordinate.longitude);
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type{
+    if([credentials.token length] == 0) {
+        NSLog(@"voip token NULL");
+        return;
+    }
+    
+    NSLog(@"PushCredentials: %@", credentials.token);
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type
+{
+    NSDictionary *payloadDict = payload.dictionaryPayload[@"aps"];
+    
+    NSLog(@"didReceiveIncomingPushWithPayload: %@", payloadDict);
+    NSString *message = payloadDict[@"alert"];
+    
+    NSLog(@"%@", message);
+    
+    [_locationManager startUpdatingLocation];
+}
+
+- (void)sendLocalNotificationsWithMessage:(NSString *)message {
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+        
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.alertBody = message;
+        localNotification.applicationIconBadgeNumber = 1;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+    }
+    else {
+
+    }
+}
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
