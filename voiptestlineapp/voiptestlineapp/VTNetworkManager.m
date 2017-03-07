@@ -29,8 +29,7 @@
     [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
     
     
-    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {        
         if (!error) {
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 success([responseObject[@"response"] string]);
