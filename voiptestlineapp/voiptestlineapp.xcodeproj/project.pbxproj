@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7139045883155E9A4640F526 /* libPods-voiptestlineapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A6678F3960A2FE9D7AFE4C /* libPods-voiptestlineapp.a */; };
 		E106E9721E6D944000F19AA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E106E9711E6D944000F19AA3 /* CoreLocation.framework */; };
+		E106E9751E6E9C9E00F19AA3 /* VTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106E9741E6E9C9E00F19AA3 /* VTNetworkManager.m */; };
 		E15304361E6D54B50048A36A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E15304351E6D54B50048A36A /* main.m */; };
 		E15304391E6D54B50048A36A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E15304381E6D54B50048A36A /* AppDelegate.m */; };
 		E153043C1E6D54B50048A36A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E153043B1E6D54B50048A36A /* ViewController.m */; };
@@ -18,7 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A2A6678F3960A2FE9D7AFE4C /* libPods-voiptestlineapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-voiptestlineapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF5509D4FA84E1D1DB9EC6E /* Pods-voiptestlineapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voiptestlineapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-voiptestlineapp/Pods-voiptestlineapp.release.xcconfig"; sourceTree = "<group>"; };
+		CC1AB87157262A60271FB42A /* Pods-voiptestlineapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voiptestlineapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voiptestlineapp/Pods-voiptestlineapp.debug.xcconfig"; sourceTree = "<group>"; };
 		E106E9711E6D944000F19AA3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E106E9731E6E9C9E00F19AA3 /* VTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTNetworkManager.h; sourceTree = "<group>"; };
+		E106E9741E6E9C9E00F19AA3 /* VTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTNetworkManager.m; sourceTree = "<group>"; };
 		E15304311E6D54B50048A36A /* voiptestlineapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voiptestlineapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15304351E6D54B50048A36A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E15304371E6D54B50048A36A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,18 +47,29 @@
 			files = (
 				E106E9721E6D944000F19AA3 /* CoreLocation.framework in Frameworks */,
 				E153044D1E6D57C30048A36A /* PushKit.framework in Frameworks */,
+				7139045883155E9A4640F526 /* libPods-voiptestlineapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22A67CE1668ED677B7C827CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC1AB87157262A60271FB42A /* Pods-voiptestlineapp.debug.xcconfig */,
+				AEF5509D4FA84E1D1DB9EC6E /* Pods-voiptestlineapp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E15304281E6D54B50048A36A = {
 			isa = PBXGroup;
 			children = (
 				E15304331E6D54B50048A36A /* voiptestlineapp */,
 				E15304321E6D54B50048A36A /* Products */,
 				E153044B1E6D57C20048A36A /* Frameworks */,
+				22A67CE1668ED677B7C827CF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +89,8 @@
 				E15304381E6D54B50048A36A /* AppDelegate.m */,
 				E153043A1E6D54B50048A36A /* ViewController.h */,
 				E153043B1E6D54B50048A36A /* ViewController.m */,
+				E106E9731E6E9C9E00F19AA3 /* VTNetworkManager.h */,
+				E106E9741E6E9C9E00F19AA3 /* VTNetworkManager.m */,
 				E153043D1E6D54B50048A36A /* Main.storyboard */,
 				E15304401E6D54B50048A36A /* Assets.xcassets */,
 				E15304421E6D54B50048A36A /* LaunchScreen.storyboard */,
@@ -93,6 +113,7 @@
 			children = (
 				E106E9711E6D944000F19AA3 /* CoreLocation.framework */,
 				E153044C1E6D57C30048A36A /* PushKit.framework */,
+				A2A6678F3960A2FE9D7AFE4C /* libPods-voiptestlineapp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,9 +125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E15304481E6D54B50048A36A /* Build configuration list for PBXNativeTarget "voiptestlineapp" */;
 			buildPhases = (
+				10465CF65B6FEA68CF7F4D82 /* [CP] Check Pods Manifest.lock */,
 				E153042D1E6D54B50048A36A /* Sources */,
 				E153042E1E6D54B50048A36A /* Frameworks */,
 				E153042F1E6D54B50048A36A /* Resources */,
+				479CE9EEB644134104D647AF /* [CP] Embed Pods Frameworks */,
+				CADA1AE2E078C404D7D17E0F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,11 +196,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10465CF65B6FEA68CF7F4D82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		479CE9EEB644134104D647AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voiptestlineapp/Pods-voiptestlineapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CADA1AE2E078C404D7D17E0F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voiptestlineapp/Pods-voiptestlineapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E153042D1E6D54B50048A36A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E106E9751E6E9C9E00F19AA3 /* VTNetworkManager.m in Sources */,
 				E153043C1E6D54B50048A36A /* ViewController.m in Sources */,
 				E15304391E6D54B50048A36A /* AppDelegate.m in Sources */,
 				E15304361E6D54B50048A36A /* main.m in Sources */,
@@ -295,6 +368,7 @@
 		};
 		E15304491E6D54B50048A36A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC1AB87157262A60271FB42A /* Pods-voiptestlineapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = voiptestlineapp/voiptestlineapp.entitlements;
@@ -309,6 +383,7 @@
 		};
 		E153044A1E6D54B50048A36A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEF5509D4FA84E1D1DB9EC6E /* Pods-voiptestlineapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = voiptestlineapp/voiptestlineapp.entitlements;

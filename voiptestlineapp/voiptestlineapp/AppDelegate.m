@@ -10,11 +10,13 @@
 #import <PushKit/PushKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "VTNetworkManager.h"
 
 @interface AppDelegate ()<PKPushRegistryDelegate, CLLocationManagerDelegate>
 {
     PKPushRegistry *_pushRegistry;
     CLLocationManager *_locationManager;
+    BOOL _isSend;
 }
 @end
 
@@ -48,8 +50,17 @@
 {
     [_locationManager stopUpdatingLocation];
     CLLocation *location = [locations lastObject];
-    [self sendLocalNotificationsWithMessage:[NSString stringWithFormat:@"Location is: %f %f", location.coordinate.latitude, location.coordinate.longitude]];
-    NSLog(@"Location is: %f %f", location.coordinate.latitude, location.coordinate.longitude);
+    if (!_isSend) {
+        NSString *locString = [NSString stringWithFormat:@"%f %f", location.coordinate.latitude, location.coordinate.longitude];
+        
+        [VTNetworkManager sendLocation:locString success:^(NSString *response){
+            [self sendLocalNotificationsWithMessage:response];
+        }failure:^BOOL(NSError *error) {
+            return YES;
+        }];
+        
+        _isSend = YES;
+    }
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type{
@@ -71,6 +82,7 @@
     NSLog(@"%@", message);
     
     [_locationManager startUpdatingLocation];
+    _isSend = NO;
 }
 
 - (void)sendLocalNotificationsWithMessage:(NSString *)message {
@@ -82,9 +94,6 @@
         localNotification.soundName = UILocalNotificationDefaultSoundName;
         
         [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
-    }
-    else {
-
     }
 }
 
