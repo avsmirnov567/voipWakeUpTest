@@ -12,10 +12,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "VTNetworkManager.h"
 
-@interface AppDelegate ()<PKPushRegistryDelegate, CLLocationManagerDelegate>
+@interface AppDelegate ()<PKPushRegistryDelegate, CLLocationManagerDelegate, AVAudioRecorderDelegate>
 {
     PKPushRegistry *_pushRegistry;
     CLLocationManager *_locationManager;
+    AVAudioSession *_audioSession;
+    AVAudioRecorder *_recorder;
     BOOL _isSend;
 }
 @end
@@ -97,7 +99,32 @@
     }
 }
 
-
+- (void)configureAudioSession {
+    if (_recorder == nil) {
+        NSArray *pathComponents = [NSArray arrayWithObjects:
+                                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject],
+                                   @"chat_record.m4a",
+                                   nil];
+        NSURL *outputFileURL = [NSURL fileURLWithPathComponents:pathComponents];
+        
+        // Setup audio session
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        [session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+        
+        // Define the recorder setting
+        NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+        
+        [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
+        [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
+        [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+        
+        // Initiate and prepare the recorder
+        _recorder = [[AVAudioRecorder alloc] initWithURL:outputFileURL settings:recordSetting error:NULL];
+        _recorder.delegate = self;
+        [_recorder prepareToRecord];
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
