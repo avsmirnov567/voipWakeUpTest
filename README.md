@@ -1,2 +1,2 @@
 # voip_wakeup_test
-Testing ios-app wake up by sending silent voip-push to it.
+Testing iOS app's wake up by sending VoIP push to it.
